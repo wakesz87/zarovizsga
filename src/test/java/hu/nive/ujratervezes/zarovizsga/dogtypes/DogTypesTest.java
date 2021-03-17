@@ -40,4 +40,4 @@ public class DogTypesTest {
         assertTrue(types.contains("kuvasz"));
     }
 
-}}
+}

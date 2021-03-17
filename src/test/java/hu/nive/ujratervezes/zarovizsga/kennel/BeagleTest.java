@@ -25,6 +25,6 @@ class BeagleTest {
         Beagle beagle = new Beagle("Bigli");
         beagle.play(3);
         assertEquals(6, beagle.getHappiness());
-    }
+   }
 
 }

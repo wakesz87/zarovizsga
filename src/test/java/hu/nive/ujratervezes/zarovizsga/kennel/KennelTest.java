@@ -62,4 +62,4 @@ public class KennelTest {
 
         assertEquals(List.of("Bigli", "Morzsi"), kennel.getHappyDogNames(7));
     }
-}}
+}
