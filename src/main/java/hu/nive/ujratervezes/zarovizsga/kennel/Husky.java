@@ -8,12 +8,12 @@ public class Husky extends Dog {
     }
 
     @Override
-     protected  void feed() {
+       void feed() {
         happiness += 4;
     }
 
     @Override
-    protected void play(int hours) {
+     void play(int hours) {
         happiness += hours * 3;
     }
 }
