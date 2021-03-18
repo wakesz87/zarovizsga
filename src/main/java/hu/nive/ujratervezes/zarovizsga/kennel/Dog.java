@@ -8,7 +8,8 @@ public abstract class Dog {
    protected String name;
    protected int happiness = 0;
 
-    public Dog(String name) {
+
+        public Dog(String name) {
         this.name = name;
     }
 
@@ -20,9 +21,9 @@ public abstract class Dog {
         return happiness;
     }
 
-    abstract void feed();
+    public abstract void feed();
 
-    abstract void play(int hours);
+    public abstract void play(int hours);
 
 
 

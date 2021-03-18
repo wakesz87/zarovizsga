@@ -9,7 +9,7 @@ public class DigitsCounter {
 
     public int getCountOfDigits(String s){
         Set<Character> digits = new HashSet<>();
-        if(s == null || s.isBlank()){
+        if(s == null || s.length()==0){
             return 0;
         }
 
