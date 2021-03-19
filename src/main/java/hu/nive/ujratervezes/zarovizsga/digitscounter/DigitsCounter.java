@@ -8,11 +8,11 @@ import java.util.Set;
 public class DigitsCounter {
 
     public int getCountOfDigits(String s){
-        Set<Character> digits = new HashSet<>();
+
         if(s == null || s.length()==0){
             return 0;
         }
-
+        Set<Character> digits = new HashSet<>();
         char[] chars = s.toCharArray();
         for (char c : chars){
             if(Character.isDigit(c)){

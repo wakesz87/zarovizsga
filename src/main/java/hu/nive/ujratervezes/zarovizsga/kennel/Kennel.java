@@ -13,45 +13,25 @@ public class Kennel {
     private List<Dog> dogs = new ArrayList<>();
 
     public List<Dog> getDogs() {
-        return new ArrayList<>(dogs);
+        return dogs;
     }
 
-    public void addDog(Dog dog) {
+    public void addDog(Dog dog){
         dogs.add(dog);
     }
 
     public void feedAll() {
-        for (Dog item : dogs) {
-            item.feed();
+        for(Dog dog : dogs){
+            dog.feed();
         }
-
     }
 
-    public Dog findByName(String name) {
-        Dog search = null;
-        for (Dog i : dogs) {
-            if (i.name.equals(name)) {
-            search = i;
-            }
-        }
-        if (Objects.isNull(search)) {
-            throw new IllegalArgumentException("Cannot find dog: " + name);
-        }
-        return search;
-
-    }
-
-    public List<String> getHappyDogNames(int minHappiness) {
-        List<String> search = new ArrayList<>();
-        for (Dog i : dogs) {
-            if (i.getHappiness() > minHappiness) {
-                search.add(i.getName());
-            }
-        }
-        return search;
-    }
-
-    public void playWith(String name, int hours) {
-        findByName(name).play(hours);
+    public Dog findByname(String name){
+       for(Dog dog : dogs) {
+           if(dog.getName().equals(name)){
+               return dog;
+           }
+       }
+       throw new IllegalArgumentException("Dog not found with name: " + name);
     }
 }

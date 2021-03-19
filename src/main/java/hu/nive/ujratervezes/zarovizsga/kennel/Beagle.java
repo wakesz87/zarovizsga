@@ -2,6 +2,9 @@
 // Ha a play() metódusát, akkor a paraméterként átadott órák száma szorozva kettővel nőjjön a boldogságértéke!
 package hu.nive.ujratervezes.zarovizsga.kennel;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Beagle extends Dog {
     public Beagle(String name) {
         super(name);
@@ -9,12 +12,12 @@ public class Beagle extends Dog {
 
     @Override
     public void  feed() {
-        happiness +=2;
+      increaseHappiness(2);
     }
 
     @Override
     public void play(int hours) {
-        happiness += hours * 2;
+        increaseHappiness(hours*2);
     }
 }
 

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DogTypes {
-
     private DataSource dataSource;
 
     public DogTypes(DataSource dataSource) {
@@ -24,36 +23,38 @@ public class DogTypes {
     }
 
     public List<String> getDogsByCountry(String country) {
-        try (Connection conn = dataSource.getConnection();
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement stmt =
+                        conn.prepareStatement("SELECT lower(NAME) as name FROM dog_types WHERE lower(country) = lower(?) ORDER BY NAME");
+        ) {
+            stmt.setString(1, country);
 
-             PreparedStatement ps = conn.prepareStatement("SELECT name FROM dog_types WHERE country = ? ORDER BY name")) {
+            return convertToNames(stmt);
+        } catch (SQLException sqle) {
+            throw new IllegalArgumentException("Error by insert", sqle);
+        }
+    }
 
-            ps.setString(1, country.toUpperCase());
-            if (getResult(ps).isEmpty()) {
-                throw new IllegalArgumentException("Not found");
+    public List<String> convertToNames(PreparedStatement stmt) {
+        List<String> result = new ArrayList<>();
+        try (
+                ResultSet rs = stmt.executeQuery();
+        ) {
+            while (rs.next()) {
+                String name = rs.getString("name");
+                result.add(name);
             }
-            return getResult(ps);
-
         } catch (SQLException sqle) {
-            throw new IllegalStateException("Cannot query", sqle);
-        }
-    }
-
-    private List<String> getResult(PreparedStatement ps) {
-        try (ResultSet rs = ps.executeQuery()) {
-            return getNames(rs);
-        } catch (SQLException sqle) {
-            throw new IllegalStateException("Cannot query", sqle);
-        }
-    }
-
-
-    private List<String> getNames(ResultSet rs) throws SQLException {
-        List<String > result = new ArrayList<>();
-
-        while (rs.next()) {
-            result.add(rs.getString("name").toLowerCase());
+            throw new IllegalArgumentException("Error by insert", sqle);
         }
         return result;
     }
 }
+
+
+
+
+
+
+
